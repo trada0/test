@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Đang mở Shopee...</title>
+
+<script>
+var link = "https://s.shopee.vn/8KjFFnwNHZ";
+
+function isMobile(){
+return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+}
+
+function openShopee(){
+if(!isMobile()){
+window.location.href = link;
+return;
+}
+
+// lần 1
+window.location.href = link;
+
+// lần 2
+setTimeout(function(){
+window.location.replace(link);
+},500);
+
+// lần 3
+setTimeout(function(){
+window.open(link,"_self");
+},1000);
+
+// lần 4 (ép lần cuối)
+setTimeout(function(){
+location = link;
+},1500);
+}
+
+// auto mở ngay
+document.addEventListener("DOMContentLoaded",openShopee);
+
+// fallback khi user quay lại
+window.onpageshow = function(){
+setTimeout(openShopee,300);
+};
+</script>
+
+<style>
+body{
+margin:0;
+background:#fff;
+display:flex;
+align-items:center;
+justify-content:center;
+height:100vh;
+font-family:Arial;
+}
+.loader{
+text-align:center;
+}
+.spinner{
+width:40px;
+height:40px;
+border:4px solid #eee;
+border-top:4px solid #ee4d2d;
+border-radius:50%;
+animation:spin 1s linear infinite;
+margin:auto;
+}
+@keyframes spin{
+0%{transform:rotate(0deg)}
+100%{transform:rotate(360deg)}
+}
+</style>
+
+</head>
+<body>
+
+<div class="loader">
+<div class="spinner"></div>
+<div style="margin-top:15px">
+Đang mở app Shopee...
+</div>
+</div>
+
+</body>
+</html>
