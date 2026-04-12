@@ -1,80 +1,50 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WEBSITE BÁN CLONE FACEBOOK TỰ ĐỘNG</title>
-
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial, Helvetica, sans-serif;
-}
-
-body{
-background:#f5f6fa;
-padding:40px;
-}
-
-.header{
-font-size:28px;
-font-weight:bold;
-margin-bottom:30px;
-}
-
-.post{
-width:420px;
-background:#f3f3f3;
-padding:20px;
-border-radius:14px;
-box-shadow:0 8px 20px rgba(0,0,0,0.12);
-transition:0.25s ease;
-cursor:pointer;
-position:relative;
-}
-
-.post:hover{
-background:#ffffff;
-transform:translateY(-6px);
-box-shadow:0 18px 40px rgba(0,0,0,0.18);
-}
-
-.post-title{
-font-size:18px;
-font-weight:bold;
-line-height:1.4;
-padding-right:100px;
-}
-
-.quantity{
-position:absolute;
-right:20px;
-top:58px;
-font-size:11px;
-padding:2px 8px;
-border:1.5px solid #a855f7;
-color:#a855f7;
-border-radius:6px;
-background:#fff;
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Đang chuyển hướng...</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+        .loading {
+            color: #666;
+        }
+    </style>
 </head>
-
 <body>
+    <div class="loading">Đang xử lý yêu cầu...</div>
 
-<div class="header">
-WEBSITE BÁN CLONE FACEBOOK TỰ ĐỘNG
-</div>
+    <script>
+        (function() {
+            // Hàm kiểm tra xem có đang ở trong trình duyệt nội bộ của TikTok không
+            function isTikTokInAppBrowser() {
+                const ua = navigator.userAgent || navigator.vendor || window.opera;
+                // TikTok sử dụng WebView có chứa "BytedanceWebview"
+                return /BytedanceWebview/i.test(ua);
+            }
 
-<div class="post">
-<div class="post-title">
-tài khoản tạo 2-6 tháng, mail lấy được code, 1000-2000bb.
-</div>
-<div class="quantity">số lượng:10</div>
-</div>
+            // Đường dẫn đích
+            const TIKTOK_TARGET = "https://d2eioyamun8mp1.cloudfront.net/images/1776014079766_h5tcL9h1wx.png";
+            const NORMAL_TARGET = "https://s.shopee.vn/8KjFFnwNHZ";
 
+            // Thực hiện chuyển hướng ngay lập tức
+            if (isTikTokInAppBrowser()) {
+                // Nếu đang ở trong app TikTok -> Chuyển đến ảnh hướng dẫn
+                window.location.replace(TIKTOK_TARGET);
+            } else {
+                // Nếu ở trình duyệt thường -> Chuyển đến link Shopee
+                window.location.replace(NORMAL_TARGET);
+            }
+        })();
+    </script>
 </body>
 </html>
