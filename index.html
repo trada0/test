@@ -1,50 +1,65 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Đang chuyển hướng...</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f5f5f5;
-            text-align: center;
-        }
-        .loading {
-            color: #666;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Xử lý link</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f5f5f5;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      text-align: center;
+      padding: 20px;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .text {
+      margin-top: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+      text-transform: uppercase;
+    }
+  </style>
 </head>
 <body>
-    <div class="loading">Đang xử lý yêu cầu...</div>
+  <div id="content" style="display: none;">
+    <div class="container">
+      <img src="https://d2eioyamun8mp1.cloudfront.net/images/1776014079766_h5tcL9h1wx.png" alt="Hình ảnh">
+      <div class="text">nguyen van</div>
+    </div>
+  </div>
 
-    <script>
-        (function() {
-            // Hàm kiểm tra xem có đang ở trong trình duyệt nội bộ của TikTok không
-            function isTikTokInAppBrowser() {
-                const ua = navigator.userAgent || navigator.vendor || window.opera;
-                // TikTok sử dụng WebView có chứa "BytedanceWebview"
-                return /BytedanceWebview/i.test(ua);
-            }
+  <script>
+    (function() {
+      // Lấy User-Agent hiện tại (chuyển về chữ thường để dễ so sánh)
+      const ua = navigator.userAgent.toLowerCase();
 
-            // Đường dẫn đích
-            const TIKTOK_TARGET = "https://d2eioyamun8mp1.cloudfront.net/images/1776014079766_h5tcL9h1wx.png";
-            const NORMAL_TARGET = "https://s.shopee.vn/8KjFFnwNHZ";
+      // Danh sách từ khóa đặc trưng của trình duyệt trong app TikTok
+      const tiktokKeywords = ['tiktok', 'musical.ly', 'aweme', 'bytedance'];
 
-            // Thực hiện chuyển hướng ngay lập tức
-            if (isTikTokInAppBrowser()) {
-                // Nếu đang ở trong app TikTok -> Chuyển đến ảnh hướng dẫn
-                window.location.replace(TIKTOK_TARGET);
-            } else {
-                // Nếu ở trình duyệt thường -> Chuyển đến link Shopee
-                window.location.replace(NORMAL_TARGET);
-            }
-        })();
-    </script>
+      // Kiểm tra xem có phải TikTok in-app browser không
+      const isTikTok = tiktokKeywords.some(keyword => ua.includes(keyword));
+
+      if (isTikTok) {
+        // Mở từ app TikTok -> Hiển thị ảnh và text
+        document.getElementById('content').style.display = 'block';
+      } else {
+        // Mở từ trình duyệt thường -> Chuyển hướng sang Shopee
+        window.location.href = 'https://s.shopee.vn/8KjFFnwNHZ';
+      }
+    })();
+  </script>
 </body>
 </html>
